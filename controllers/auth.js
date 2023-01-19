@@ -38,7 +38,7 @@ export const register = async (req, res) => {
     // The new User object is then saved to the database and the saved user object is sent back as a JSON response with a status code of 201 (Created).
     const savedUser = await newUser.save()
     res.status(201).json(savedUser)
-  // If an error occurs during the process, it sends a status code of 500 (Internal Server Error) with an error message in the response body.
+    // If an error occurs during the process, it sends a status code of 500 (Internal Server Error) with an error message in the response body.
   } catch (err) {
     res.status(500).json({ error: err.message })
   }
@@ -61,7 +61,6 @@ export const login = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
     delete user.password
     res.status(200).json({ token, user })
-
   } catch (err) {
     res.status(500).json({ error: err.message })
   }
